@@ -1,0 +1,19 @@
+parameters:
+  pdo.class: PDO
+  pdo.attr_errmode: 3
+  pdo.erromode_exception: 2
+  pdo.options:
+  %pdo.attr_errmode%: %pdo.erromode_exception%
+ 
+  database.db.dsn: mysql:host=127.0.0.1;port=3306;dbname=cms
+  database.db.username: root
+  database.db.password: mysqladmin
+ 
+services:
+  db:
+    class: %pdo.class%
+    arguments:
+          - %database.db.dsn%
+          - %database.db.username%
+          - %database.db.password%
+          - %pdo.options%
